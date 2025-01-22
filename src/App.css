@@ -1,0 +1,17 @@
+@media (prefers-reduced-motion: no-preference) {}
+.game{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+kbd{
+    font-size: 1.5em;
+    font-weight: 700;
+    padding: 0.1em 0.5em;
+    border-radius: 0.2em;
+    background-color: rgb(100, 113, 255);
+    text-shadow: 0 0 0.5em rgb(1, 4, 34);
+    box-shadow: 0 0 0.4em rgb(1, 4, 34);
+    color: white;
+}
