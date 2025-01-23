@@ -16,6 +16,7 @@ function App() {
 
   async function restart(winner: string) {
     setTimeout(() => {
+      setGameTitle(`${winner} Wins!!`)
       // waiting for 2 seconds before restarting the game
       setStarter(starter === "Yellow" ? "Red" : "Yellow")
     }, 2000);
