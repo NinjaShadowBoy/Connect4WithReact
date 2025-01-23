@@ -1,6 +1,9 @@
 # Connect 4 Game with React + TypeScript + Vite
 
-![Connect 4 Screenshot Dark](![connect4dark](https://github.com/user-attachments/assets/dc6709b5-1134-441a-bda6-54811f81862f)) ![Connect 4 Screenshot Light](![connect4light](https://github.com/user-attachments/assets/f0d1280b-724c-486c-b307-68d7eac10cc1)) 
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/762b8e36-ca1f-4e5c-bfb8-d77bdb597cca" alt="Connect 4 Screenshot Dark" width="30%" height="auto" />
+  <img src="https://github.com/user-attachments/assets/2db27af8-a01e-437a-a5d1-29da394c4bfc" alt="Connect 4 Screenshot Light" width="30%" height="auto"  />
+</div>
 
 A classic Connect 4 game built with **React**, **TypeScript**, and **Vite**. Play against a friend and see who can connect four discs first! The game automatically restarts when a player wins or the board is full.
 
