@@ -15,7 +15,15 @@ function App() {
   }, [starter])
 
   async function restart(winner: string) {
-    setGameTitle(`${winner} Wins!!`)
+    setTimeout(() => {
+      // waiting for 2 seconds before restarting the game
+      setStarter(starter === "Yellow" ? "Red" : "Yellow")
+    }, 2000);
+  }
+  
+  async function draw() {
+    setGameTitle(`"Draw! Nobody wins 🤷‍♂️"`)
+
     setTimeout(() => {
       // waiting for 2 seconds before restarting the game
       setStarter(starter === "Yellow" ? "Red" : "Yellow")
@@ -27,7 +35,7 @@ function App() {
       <h1>Connect 4 game</h1>
       <p>Press a key from <kbd>1</kbd> to <kbd>8</kbd> or click on colums</p>
       <h2>{gameTitle}</h2>
-      <Grid onWinner={restart} onPlay={(text: string) => setGameTitle(text)} starter={starter} />
+      <Grid onWinner={restart} onDraw={draw} onPlay={(text: string) => setGameTitle(text)} starter={starter} />
     </div>
   )
 }

@@ -3,12 +3,13 @@ import Square from "./Square"
 import "./Grid.css"
 
 type GridProps = {
-    onPlay: (text: string) => void
-    onWinner: (winner: string) => void
+    onPlay: (text: string) => void;
+    onWinner: (winner: string) => void;
+    onDraw: () => void;
     starter: string;
 }
 
-export default function Grid({ onPlay, onWinner, starter }: GridProps) {
+export default function Grid({ onPlay, onWinner, starter, onDraw }: GridProps) {
     // Reference to matrix willnever be changed
     let [matrix, setMatrix] = useState(Array.from({ length: 8 }, () => Array.from({ length: 8 }, () => "White")))
     let [playing, setPlaying] = useState(true)
@@ -37,6 +38,7 @@ export default function Grid({ onPlay, onWinner, starter }: GridProps) {
                 onPlay(newturn + "'s turn")
 
                 let winner = "White";
+                let draw = true;
                 // Search winning condition 
                 for (let i = 0; i < matrix.length && winner === "White"; i++) {
                     for (let j = 0; j < matrix[i].length && winner === "White"; j++) {
@@ -67,6 +69,7 @@ export default function Grid({ onPlay, onWinner, starter }: GridProps) {
                                     matrix[i][j] === matrix[i - 2][j + 2] &&
                                     matrix[i][j] === matrix[i - 3][j + 3])
                             ) {
+                                draw = false;
                                 winner = matrix[i][j];
                                 console.log("Winner:", winner);
                                 onWinner(winner);
@@ -80,12 +83,25 @@ export default function Grid({ onPlay, onWinner, starter }: GridProps) {
                                 // Exit the loops early since a winner is found
                                 break;
                             }
+                        } else {
+                            draw = false;
                         }
                     }
+                }
+                if (draw) {
+                    onDraw()
+                    setPlaying(false);
+
+                    // Reset the grid after some time
+                    setTimeout(() => {
+                        setPlaying(true);
+                        setMatrix(Array.from({ length: 8 }, () => Array.from({ length: 8 }, () => "White")));
+                    }, 3000);
                 }
                 break;
             }
         }
+
     }
 
 
@@ -132,7 +148,7 @@ export default function Grid({ onPlay, onWinner, starter }: GridProps) {
     })
 
     return (
-        <div className={`grid ${playing ? "" : "gameover " + turn +"-lose"}`}>
+        <div className={`grid ${playing ? "" : "gameover " + turn + "-lose"}`}>
             {matrix.map((column, c) => (
                 <div key={c} onClick={() => { if (playing) { onColumnClicked(c) } }}
                     className={`column ${playing ? "playing" : ""}`}>
