@@ -98,7 +98,7 @@ Contributions are welcome! If you'd like to contribute to this project, please f
 ## Connect with Me
 
 - **GitHub**: [NinjaShadowBoy](https://github.com/NinjaShadowBoy)
-- **LinkedIn**: [Alex Nelson] 
+- **LinkedIn**: [Alex Nelson Ryan ABENA](www.linkedin.com/in/alex-nelson-ryan-abena-439068290)
 
 ---
 
