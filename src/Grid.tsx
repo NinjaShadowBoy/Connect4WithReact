@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import Square from "./Square"
 import "./Grid.css"
 
@@ -11,18 +11,18 @@ type GridProps = {
 
 export default function Grid({ onPlay, onWinner, starter, onDraw }: GridProps) {
     // Reference to matrix willnever be changed
-    let [matrix, setMatrix] = useState(Array.from({ length: 8 }, () => Array.from({ length: 8 }, () => "White")))
-    let [playing, setPlaying] = useState(true)
+    const [matrix, setMatrix] = useState(Array.from({ length: 8 }, () => Array.from({ length: 8 }, () => "White")))
+    const [playing, setPlaying] = useState(true)
 
     // Turn will change and cause rerender
-    let [turn, setTurn] = useState(starter);
+    const [turn, setTurn] = useState(starter);
     // console.log("Starter", starter);
 
-    let keyUpHandler: (e: KeyboardEvent) => void;
-    let boldNumber: (e: KeyboardEvent) => void;
+    const keyUpHandler = useRef<(e: KeyboardEvent) => void>();
+    const boldNumber = useRef<(e: KeyboardEvent) => void>();
 
 
-    let onColumnClicked = (num: number) => {
+    const onColumnClicked = (num: number) => {
         for (let index = 7; index >= 0; index--) {
             if (matrix[num][index] !== "Red" && matrix[num][index] !== "Yellow") {
                 matrix[num][index] = turn;
@@ -106,15 +106,15 @@ export default function Grid({ onPlay, onWinner, starter, onDraw }: GridProps) {
 
 
     useEffect(() => {
-        keyUpHandler = (e: KeyboardEvent) => {
+        keyUpHandler.current = (e: KeyboardEvent) => {
             // e.preventDefault()
-            let columnIndex = parseInt(e.key) - 1
+            const columnIndex = parseInt(e.key) - 1
             if (!isNaN(columnIndex) && 0 <= columnIndex && columnIndex <= 7) {
                 // Put color on Grid
                 console.log("Key Pressed", columnIndex, turn);
 
                 onColumnClicked(columnIndex)
-                let numElement = document.getElementById(`${columnIndex}`);
+                const numElement = document.getElementById(`${columnIndex}`);
                 if (numElement) {
                     // Change number back to normal
                     numElement.style.scale = "1";
@@ -123,11 +123,11 @@ export default function Grid({ onPlay, onWinner, starter, onDraw }: GridProps) {
             }
         }
 
-        boldNumber = (e: KeyboardEvent) => {
+        boldNumber.current = (e: KeyboardEvent) => {
             // e.preventDefault()
-            let columnIndex = parseInt(e.key) - 1
+            const columnIndex = parseInt(e.key) - 1
             if (!isNaN(columnIndex) && 0 <= columnIndex && columnIndex <= 7) {
-                let numElement = document.getElementById(`${columnIndex}`);
+                const numElement = document.getElementById(`${columnIndex}`);
                 if (numElement) {
                     // Make number bold and large
                     numElement.style.scale = "1.3";
@@ -137,13 +137,13 @@ export default function Grid({ onPlay, onWinner, starter, onDraw }: GridProps) {
         }
 
         if (playing) {
-            document.addEventListener("keyup", keyUpHandler)
-            document.addEventListener("keydown", boldNumber)
+            document.addEventListener("keyup", keyUpHandler.current!)
+            document.addEventListener("keydown", boldNumber.current!)
         }
 
         return () => {
-            document.removeEventListener("keyup", keyUpHandler)
-            document.removeEventListener("keydown", boldNumber)
+            document.removeEventListener("keyup", keyUpHandler.current!)
+            document.removeEventListener("keydown", boldNumber.current!)
         }
     })
 

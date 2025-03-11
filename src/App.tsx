@@ -3,8 +3,8 @@ import './App.css'
 import Grid from './Grid'
 
 function App() {
-  let [starter, setStarter] = useState("Yellow")
-  let [gameTitle, setGameTitle] = useState(`${starter} should start!!`)
+  const [starter, setStarter] = useState("Yellow")
+  const [gameTitle, setGameTitle] = useState(`${starter} should start!!`)
 
   useEffect(() => {
     setGameTitle(`${starter} should start!!`);
