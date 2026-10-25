@@ -63,7 +63,18 @@ To run this project locally, follow these steps:
    npm run dev
    ```
 
-5. Open your browser and visit `http://localhost:3000` or the port chosen by vite to play the game locally.
+5. Open your browser at `http://localhost:5173` (Vite's default port; the
+   terminal prints the exact URL).
+
+You need Node.js 18 or newer.
+
+### Other scripts
+
+| Command | What it does |
+|---|---|
+| `npm run build` | Type-check and build into `dist/` |
+| `npm run preview` | Serve the production build locally |
+| `npm run lint` | Run ESLint |
 
 ---
 
@@ -98,7 +109,7 @@ Contributions are welcome! If you'd like to contribute to this project, please f
 ## Connect with Me
 
 - **GitHub**: [NinjaShadowBoy](https://github.com/NinjaShadowBoy)
-- **LinkedIn**: [Alex Nelson Ryan ABENA](www.linkedin.com/in/alex-nelson-ryan-abena-439068290)
+- **LinkedIn**: [Alex Nelson Ryan ABENA](https://www.linkedin.com/in/alex-nelson-ryan-abena-439068290)
 
 ---
 
